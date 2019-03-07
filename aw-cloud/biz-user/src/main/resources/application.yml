@@ -1,0 +1,61 @@
+server:
+  port: 20101
+
+spring:
+  application:
+    name: biz-user
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  datasource:
+    url: ${gmoft.defs.datasource-url}
+    username: ${gmoft.defs.datasource-username}
+    password: ${gmoft.defs.datasource-password}
+    type: com.alibaba.druid.pool.DruidDataSource
+
+eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 15
+    lease-renewal-interval-in-seconds: 10
+    health-check-url-path: /actuator/health
+    status-page-url-path: /actuator/info
+    preferIpAddress: true
+    instance-id: ${gmoft.defs.eureka-instance-id}
+    metadata-map:
+      user.name: ${gmoft.defs.eureka-instance-metadata-map-name}
+      user.password: ${gmoft.defs.eureka-instance-metadata-map-pwd}
+  client:
+      serviceUrl:
+        defaultZone: ${gmoft.defs.eureka-url}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+mybatis:
+  type-aliases-package: com.my.bizuser.entity
+  mapper-locations: classpath:com/my/bizuser/mapper/*.xml
+
+logging:
+  path: /var/aw/log/${spring.application.name}
+
+client:
+  clientId: 098f6bcd4621d373cade4e832627b4f6
+  base64Secret: YWxsdGhld2F5
+  name: aw
+  expiresSecond: 600
+
+gmoft:
+  defs:
+    eureka-instance-metadata-map-name: admin
+    eureka-instance-metadata-map-pwd: admin
+    eureka-instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    eureka-url: http://127.0.0.1:10101/eureka/
+    datasource-url: jdbc:mysql://server.natappfree.cc:44266/allway?characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useUnicode=true&serverTimezone=UTC
+    datasource-username: root
+    datasource-password: 123456

@@ -1,0 +1,89 @@
+server:
+  port: 10201
+
+spring:
+  application:
+    name: cloud-gateway
+
+eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 15
+    lease-renewal-interval-in-seconds: 10
+    health-check-url-path: /actuator/health
+    status-page-url-path: /actuator/info
+    preferIpAddress: true
+    instance-id: ${gmoft.defs.eureka-instance-id}
+    metadata-map:
+      user.name: ${gmoft.defs.eureka-instance-metadata-map-name}
+      user.password: ${gmoft.defs.eureka-instance-metadata-map-pwd}
+  client:
+      serviceUrl:
+        defaultZone: ${gmoft.defs.eureka-url}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+      ignoredServices: '*'
+      sensitive-headers: Access-Control-Allow-Origin,Access-Control-Allow-Methods
+      custom-sensitive-headers: true
+
+zuul:
+  prefix: /aw/
+  stripPrefix: true
+  ignoredServices: '*'
+  sensitive-headers: Access-Control-Allow-Origin,Access-Control-Allow-Methods
+  custom-sensitive-headers: true
+  host:
+    connect-timeout-millis: 60000
+    socket-timeout-millis: 60000
+    max-per-route-connections: 1000
+    max-total-connections: 1000
+  routes:
+    #认证管理
+    auth-user:
+      path: /user-api/**
+      stripPrefix: true
+      serviceId: biz-user
+
+gate:
+  ignore:
+    startWith:
+  jersey:
+    startWith: /rest
+
+ribbon:
+  ReadTimeout: 100000
+  ConnectTimeout: 100000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1
+  OkToRetryOnAllOperations: false
+  eureka:
+    enabled: true
+
+hystrix:
+  threadpool:
+    default:
+      coreSize: 1000 ##并发执行的最大线程数，默认10
+      maxQueueSize: 1000 ##BlockingQueue的最大队列数
+      queueSizeRejectionThreshold: 500 ##即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+          strategy: SEMAPHORE
+
+gmoft:
+  defs:
+    eureka-instance-metadata-map-name: admin
+    eureka-instance-metadata-map-pwd: admin
+    eureka-instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    eureka-url: http://35ccc8.natappfree.cc/eureka/

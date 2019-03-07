@@ -1,0 +1,12 @@
+server:
+  port: 10101
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10101/eureka/
+  instance:
+    hostname: eureka-dev
+    metadata-map:
+      user.name: admin
+      user.password: admin
