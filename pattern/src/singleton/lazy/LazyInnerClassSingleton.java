@@ -1,14 +1,12 @@
 package singleton.lazy;
 
-import java.io.Serializable;
-
-public class LazyInnerClassSingleton implements Serializable {
+public class LazyInnerClassSingleton {
 
     private LazyInnerClassSingleton() {
         // 判断是否为空->防止java反射创建对象
-//        if (SingletonHolder.singleton != null) {
-//            throw new RuntimeException("不可调用构造方法");
-//        }
+        if (SingletonHolder.singleton != null) {
+            throw new RuntimeException("不可调用构造方法");
+        }
     }
 
     public static final LazyInnerClassSingleton getInstance() {
@@ -18,10 +16,5 @@ public class LazyInnerClassSingleton implements Serializable {
     private static final class SingletonHolder {
         private static final LazyInnerClassSingleton singleton = new LazyInnerClassSingleton();
     }
-
-    // 防止反序列化
-//    private Object readResolve() {
-//        return SingletonHolder.singleton;
-//    }
 
 }
