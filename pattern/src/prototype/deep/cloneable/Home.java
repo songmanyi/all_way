@@ -29,17 +29,17 @@ public class Home implements Cloneable {
 
     @Override
     protected Home clone() throws CloneNotSupportedException {
-        // 浅克隆
-        // return (Home) super.clone();
+        // 浅克隆：未克隆home的成员
+         return (Home) super.clone();
 
         // 深克隆
-        Home home = null;
-        try {
-            home = (Home) super.clone();
-            home.person = home.person.clone();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return home;
+//        Home home = null;
+//        try {
+//            home = (Home) super.clone();
+//            home.person = home.person.clone();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return home;
     }
 }
