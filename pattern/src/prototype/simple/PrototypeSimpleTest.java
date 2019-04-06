@@ -26,6 +26,18 @@ public class PrototypeSimpleTest {
 
         System.out.println(a.getHobbies() == b.getHobbies());
 
+        try {
+            PrototypeB bb = new PrototypeB();
+            bb.setHobbies(new ArrayList<String>(){{
+                add("one");
+                add("two");
+            }});
+            PrototypeB cc = (PrototypeB) bb.clone();
+            System.out.println(cc.getHobbies());
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
