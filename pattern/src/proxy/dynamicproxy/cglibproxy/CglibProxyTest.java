@@ -16,7 +16,6 @@ public class CglibProxyTest {
 
             //CGLib 有个坑，CGLib不能代理final的方法
             Customer obj = (Customer) new CglibMeipoProxy().getInstance(Customer.class);
-            System.out.println(obj);
             obj.findLove();
         } catch (Exception e) {
             e.printStackTrace();

@@ -4,7 +4,9 @@ import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
 
-public class CglibMeipoProxy {
+import java.lang.reflect.Method;
+
+public class CglibMeipoProxy implements MethodInterceptor {
 
     public Object getInstance(Class<?> clazz) {
         Enhancer enhancer = new Enhancer();
