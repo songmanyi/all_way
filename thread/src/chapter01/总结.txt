@@ -28,3 +28,6 @@
 1）使用退出标志，使得线程正常退出
 2）使用stop方法，强制退出
 3）使用interrupt方法中断线程
+
+8、isInterrupt() 和 interrupted() 方法的区别：
+首先都能返回相同
