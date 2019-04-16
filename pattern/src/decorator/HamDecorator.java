@@ -1,20 +1,18 @@
 package decorator;
 
-public class HamDecorator implements IBaseCake {
-
-    private IBaseCake baseCake;
+public class HamDecorator extends BaseCakeDecorator {
 
     public HamDecorator(IBaseCake baseCake) {
-        this.baseCake = baseCake;
+        super(baseCake);
     }
 
     @Override
     public int getPrice() {
-        return baseCake.getPrice() + 2;
+        return super.getPrice() + 2;
     }
 
     @Override
     public String getMessage() {
-        return baseCake.getMessage() + " 一个火腿";
+        return super.getMessage() + " 一个火腿";
     }
 }

@@ -1,20 +1,18 @@
 package decorator;
 
-public class EggDecorator extends BaseCake {
-
-    private IBaseCake baseCake;
+public class EggDecorator extends BaseCakeDecorator {
 
     public EggDecorator(IBaseCake baseCake) {
-        this.baseCake = baseCake;
+        super(baseCake);
     }
 
     @Override
     public int getPrice() {
-        return baseCake.getPrice() + 1;
+        return super.getPrice() + 1;
     }
 
     @Override
     public String getMessage() {
-        return baseCake.getMessage() + " 一个鸡蛋";
+        return super.getMessage() + " 一个鸡蛋";
     }
 }
