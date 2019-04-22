@@ -1,0 +1,18 @@
+﻿命令：
+jps-> 查找所有java线程
+jinfo -flags 端口号->查看jvm的配置信息（运行时参数）
+jamp -heap 端口号->查看内存信息
+
+
+反射三种方式：
+Class c = Foo.class;
+Class c = foo.getClass()
+Class c = Class.forName("类的相对路径");
+
+ClassLoader分为三种：
+Bootstrap Class Loader
+Extension Class Loader
+System Class Loader
+
+双亲委派机制：先从父加载器找是否已经加载了，没有加载的话，在加载Class
+沙箱机制，就是jdk的代码不被串改，保证安全。
