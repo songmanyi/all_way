@@ -3,16 +3,36 @@ jps-> 查找所有java线程
 jinfo -flags 端口号->查看jvm的配置信息（运行时参数）
 jamp -heap 端口号->查看内存信息
 
+JVM体系结构：
+主要分为三大部分：
+类加载器
+运行时数据区，细分为程序计数器、虚拟机栈、本地方法栈、方法区、堆
+执行引擎
 
-反射三种方式：
-Class c = Foo.class;
-Class c = foo.getClass()
-Class c = Class.forName("类的相对路径");
-
-ClassLoader分为三种：
+类加载器ClassLoader分为三种：
 Bootstrap Class Loader
 Extension Class Loader
 System Class Loader
 
 双亲委派机制：先从父加载器找是否已经加载了，没有加载的话，在加载Class
 沙箱机制，就是jdk的代码不被串改，保证安全。
+
+程序计数器：
+每个线程都有一个程序计数器，是线程私有的，指向方法区中的方法字节码，当CPU进行上下文切换时，切换到该线程后，继续往下执行。
+
+虚拟机栈：
+每个线程都有一个虚拟机栈，也是线程私有的。存储的栈元素是栈帧，每调用一个方法，就会生成一个栈帧，用来存储局部变量表、操作数栈、动态链接、方法出口等信息。
+虚拟机栈，是一个先入后出的栈。
+
+本地方法栈：
+本地方法栈与虚拟机栈类似，但是服务的对象是JVM中native标识的方法
+
+
+
+反射三种方式：
+Class c = Foo.class;
+Class c = foo.getClass()
+Class c = Class.forName("类的相对路径");
+
+
+
