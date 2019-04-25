@@ -33,4 +33,12 @@ lock和synchronized的区别：
 7、方法描述：
 getHoldCount()->查询当前线程保持此锁定的个数，调用lock的次数
 getQueneLenth()->返回正等待获取此锁定的线程估计数
-getWaitQueneLenth()->返回正等待condition条件的估计数
+getWaitQueneLenth(Condition)->返回正等待condition条件的估计数，有多少个在await的
+
+
+8、锁：ReentrantReadWriteLock：
+使用方式：
+lock.readLock().lock();/lock.readLock().unlock();
+lock.writeLock().lock();/lock.writeLock().unlock();
+
+其中，读读非同步，读写、写读、写写为同步。
