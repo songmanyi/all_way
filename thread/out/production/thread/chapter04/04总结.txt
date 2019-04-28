@@ -30,6 +30,8 @@ lock和synchronized的区别：
    原因是，synchronized中，锁是不断升级的，从自旋锁到轻量级到重量级锁，等待会越来越严重。
            所以当大量同步处理，不太适合synchronized。
 
+5）超时获取锁：lock可以通过tryLock方法判断是否超时获得锁。超时则返回。
+
 7、方法描述：
 getHoldCount()->查询当前线程保持此锁定的个数，调用lock的次数
 getQueneLenth()->返回正等待获取此锁定的线程估计数

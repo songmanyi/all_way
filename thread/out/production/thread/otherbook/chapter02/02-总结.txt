@@ -1,0 +1,41 @@
+内存屏障：
+    LoadLoad：
+        Load1->LoadLoad->Load2:确保Load1数据的装载，先于Load2及所有的后续装载
+    LoadStore：
+        Load1->LoadStore->Store1:确保Load1数据的装载，先于Store1及后续的所有存储指令
+    StoreStore：
+        Store1->StoreStore->Store2:确保Store1数据的存储，先于Store2及后续的所有存储指令
+    StoreLoad：
+        是一个全能屏障，有上面三个屏障的功效
+
+volatile特性：
+    可见性：对一个volatile变量的读，总能看到（任意线程）对这个volatile变量最后的写入。
+    有序性：通过禁止编译指令重排，保证指令执行于代码逻辑相同
+
+防止编译指令重排是通过插入内存屏障来实现的：
+    volatile写操作：前加 StoreStore屏障，后加StoreLoad屏障
+    volatile读操作：后加LoadLoad屏障，后加LoadStore屏障
+
+happens-before：
+    定义：在JMM中，如果一个操作的结果，需要对另一个操作可见，那么这两个操作之间是happens-before关系。
+    规则：
+        a、一个操作happens-before另外一个操作，那么第一个操作的结果对第二个操作可见，且第一个操作的执行顺序排在第二个操作之前。
+        b、如果两个操作符合happens-before关系，并不意味着一定要按照该顺序执行。
+           如果重排序之后的结果与happens-before关系执行的结果一致，JMM允许这种重排序。
+
+as-if-serial：
+    定义：不管怎么重排序，单线程的执行结果不能被改变。
+
+happens-before与as-if-serial：
+    as-if-serial语义保证单线程内的执行结果不变，happends-before保证正确同步的多线程执行结果不被改变。
+
+※※AQS（AbstractQueuedSynchronizer）队列同步器：
+使用一个int成员变量表示同步状态，通过内置的FIFO队列来完成资源获得线程的排队工作。
+
+Fork/Join框架：
+继承类分为：RecursiveAction（没有返回结果的任务）
+            RecursiveTask（用于有返回结果的任务）
+需要通过ForkJoinPool来执行
+
+
+
