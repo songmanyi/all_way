@@ -36,6 +36,25 @@ Fork/Join框架：
 继承类分为：RecursiveAction（没有返回结果的任务）
             RecursiveTask（用于有返回结果的任务）
 需要通过ForkJoinPool来执行
+工作窃取模式，使得所有的线程都能有任务可以干，充分利用cpu资源。但是在任务较少的情况下，执行速度，并不一定比单线程处理要快。
 
 
+juc包下，Atomic包，提供了原子操作类：
+1、原子更新基本类型：AtomicBoolean、AtomicInteger、AtomicLong
+2、原子更新数据：AtomicIntegerArray、AtomicLongArray、AtomicReferenceArray
+3、原子更新引用类型：AtomicReference、AtomicReferenceFieldUpdater、AtomicMarkableReference
+4、原子更新字段类：AtomicIntegerFieldUpdater、AtomicLongFieldUpdater、AtomicStampedReference
+
+
+涉及到了CAS原理：
+CAS的操作，简单来说是一种乐观锁的方式，通过比较并更新的方式来更新值。
+认为该位置的值是A，如果是A，则更新为B；如果不是A，则返回该位置当前值。
+
+缺点：
+1、ABA问题：
+简单来说，就是线程1取得内存值，线程2也取得了内存值，线程2修改该值为B，然后线程2又将该值变成A。
+这样对线程1来说，也是满足预期值，会对值进行变更。
+可以通过AtomicStampedReference来解决ABA的问题，增加标记的方式。
+2、自旋CAS长期不成功的话，会给CPU带来比较大的资源浪费。
+3、只能保证一个共享变量的原子操作。
 
