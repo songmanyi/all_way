@@ -73,3 +73,26 @@ Semaphore（信号量）用来控制同时访问特定资源的线程数量，�
 
 
 Exchanger（交换者）是一个用于线程间协作的工具类
+
+
+线程池的好处：
+1）降低资源消耗：通过重复利用已经创建的线程，降低线程创建和销毁造成的消耗。
+2）提高响应速度：当任务达到时，任务可以不用等到线程创建就能立马执行。
+3）提高线程的管理：线程是稀缺资源，如果无限创建，不仅消耗资源，还会降低系统的稳定性，可以通过线程池，统一分配、调优和监控。
+
+线程池，并不提倡通过ThreadPoolExecutor来创建，一般通过Executors类，来创建线程池。
+
+Executor框架，由三部分组成：
+1）任务
+2）任务的执行
+3）异步的计算结果
+
+主要成员：
+1）ThreadPoolExecutor：通过工厂Executors来创建。可以创建三种类型，SingleThreadExecutor、FixedThreadExecutor和CachedThreadPool。
+    a、FixedThreadExecutor：使用固定线程数。适用于为了满足资源管理的需求，而需要限制当前线程数量的场景。
+    b、SingleThreadExecutor：使用单个线程。适用于保证顺序的执行各个任务，并且在任意的时间点，不会有多个线程活动的应用场景。
+    c、CachedThreadPool：根据需要，创建新的线程。是大小无界的线程池。适用于执行很多的短期任务的小程序，或者是负载较轻的服务器。
+2）ScheduledThreadPoolExecutor：适用于多个后台线程执行周期任务，同时为了满足资源管理的需求需要限制后台线程的数量的应用场景。
+   SingleThreadScheduledExecutor：适用于单个后台线程执行周期任务，同时保证顺序执行。
+3）Future接口和FutureTask类，来表示异步计算的结果。
+4）Runnable接口和Callable接口的实现类。区别在于Runnable不会返回结果，Callable可以返回结果。
