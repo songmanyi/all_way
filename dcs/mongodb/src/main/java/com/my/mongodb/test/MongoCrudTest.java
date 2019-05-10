@@ -5,9 +5,9 @@ import com.mongodb.*;
 public class MongoCrudTest {
 
     public static void main(String[] args) {
-        Mongo mongo = new Mongo("192.168.11.123", 27017);
+        Mongo mongo = new Mongo("192.168.11.205", 27017);
 
-        DB db = new DB(mongo, "gupaoedu-demo");
+        DB db = new DB(mongo, "my");
 
         DBCollection collection = db.getCollection("member");
 

@@ -9,9 +9,9 @@ JVM体系结构，主要分为三大部分：
     3、执行引擎
 
 类加载器ClassLoader分为三种：
-    1、Bootstrap Class Loader
-    2、Extension Class Loader
-    3、System Class Loader
+    1、Bootstrap Class Loader：装载核心类库
+    2、Extension Class Loader：装在 jdk下home/lib/ext目录下的jar
+    3、System Class Loader：classpath
 
     双亲委派机制：先从父加载器找是否已经加载了，没有加载的话，在加载Class
     沙箱机制，就是jdk的代码不被串改，保证安全。
@@ -54,8 +54,8 @@ JVM体系结构，主要分为三大部分：
 
 
 
-
-
+加载顺序：
+父静子静，父非静父构造，子非静子构造
 
 
 

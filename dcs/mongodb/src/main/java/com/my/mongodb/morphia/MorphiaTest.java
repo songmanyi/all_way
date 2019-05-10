@@ -10,7 +10,7 @@ public class MorphiaTest {
 
     public static void main(String[] args) {
         final Morphia morphia = new Morphia();
-        Datastore ds = morphia.createDatastore(new MongoClient("192.168.11.123", 27017), "gupaoedu-demo");
+        Datastore ds = morphia.createDatastore(new MongoClient("192.168.11.205", 27017), "gupaoedu-demo");
 
         Member member = new Member();
         member.setName("Tom");
