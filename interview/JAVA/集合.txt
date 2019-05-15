@@ -69,7 +69,9 @@ Iterator接口，所有的集合类，都实现了Iterator接口，用于遍历集合中的元素。
         实现原理是通过内部维护的红黑树来实现的，并且内部维护了比较器。通过比较器，来判断节点的顺序。
 
     HashTable原理：
-        实现原理与HashMap相同，但是关键方法增加了锁关键字synchronized，所以是线程安全的。
+        实现原理与HashMap相同，但是关键方法增加了锁关键字synchronized，所以是线程安全的。并且键和值均不能是null。
 
 5、Set的实现类及对比：
-    HashSet原理：实际上内部实现是通过HashMap来实现的。
+    HashSet原理：实际上内部实现是通过HashMap来实现的。其中以放入的对象为HashMap的key，value为一个虚拟的对象。
+    LinkedHashSet原理：LinkedHashSet继承了HashSet，内部的实现原理实际上是LinkedHashMap，也是维护了所有项目的双向链表，保证插入的顺序。
+    TreeSet原理：内部实现是通过TreeMap实现的。
