@@ -1,0 +1,18 @@
+线程安全的Map：Hashtable、ConcurrentHashMap、SynchronizedMap
+1、Hashtable
+private Map<String, Object> map = new Hashtable<>();
+
+get和put都加了synchronized关键字：两个方法只能有一个同时执行。
+就算是get也不能并行。
+
+太霸道，所以效率会低。
+
+2、SynchronizedMap
+private Map<String, Object> map = Collections.synchronizedMap(new HashMap<String, Object>());
+
+实现方式，相当于对map做了一层封装，每次调用get或put方式时，需要通过获得一个对象锁。所以效率也是非常低。
+
+3、ConcurrentHashMap
+private Map<String, Object> map = new ConcurrentHashMap<>();
+
+JDK1.7之前的话，采用的是分段锁来实现的。把数组分为16个桶，每次只锁其中一个桶。不影响其他桶的使用。

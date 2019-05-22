@@ -18,3 +18,6 @@ lock是通过new condition，通过condition的await和signal来实现的，可以创建多组。
 synchronized，当争抢锁的过程越来越激烈的时候，会从偏向锁、轻量级锁到重量级锁升级，并且不会降级。再争抢锁没那么激烈的时候，synchronized效率更高。
 lock是不存在锁级别的升级，是通过CAS来实现的。所以再竞争没那么激烈的情况下，效率低于synchronized。
 
+
+超时获取锁：
+    lock可以通过tryLock方法判断是否超时获得锁。超时则返回。

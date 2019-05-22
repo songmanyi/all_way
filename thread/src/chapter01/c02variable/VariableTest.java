@@ -19,6 +19,7 @@ public class VariableTest {
         new Thread(d).start();
         new Thread(d).start();
         new Thread(d).start();
+        Thread.interrupted();
 
         // 变量共享
         Thread.sleep(1000);

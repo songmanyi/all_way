@@ -4,4 +4,6 @@ public interface Person {
 
     void findLove();
 
+    void findOther();
+
 }
