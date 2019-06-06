@@ -1,5 +1,0 @@
-1、RPC：
-远程过程调用框架，主要用来分布式系统通信。
-RMI（JRMP）/ soap（webservice）/ thrift / grpc / dubbo
-
-RMI：纯JAVA的RPC框架，基于JRMP协议，能够实现JAVA跨平台的通信，但是只支持JAVA平台。

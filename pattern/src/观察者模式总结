@@ -1,5 +1,0 @@
-Observable:被观察者
-需要实现add/remove/notify方法
-
-Observer：观察者
-实现update方法

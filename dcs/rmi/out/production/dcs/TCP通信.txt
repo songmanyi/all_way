@@ -1,5 +1,0 @@
-TCP/IP四层概念模型：
-传输层             TCP头+HTTP请求报文
-网络层             IP头+TCP头+HTTP请求报文
-数据链路层      MAC头+IP头+TCP头+HTTP请求报文
-物理层             01010101010

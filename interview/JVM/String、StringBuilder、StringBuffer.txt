@@ -1,9 +1,0 @@
-1、String、StringBuilder、StringBuffer的性能区别：
-
-str += "hello";的操作，通过反编译字节码可以看到，是被优化成了：
-StringBuilder sb = new StringBuilder();
-sb.append("hellow")
-sb.toString();
-三个指令。
-
-而通过StringBuilder进行for循环增加字符串的话，则省掉了new对象及toString的操作指令。

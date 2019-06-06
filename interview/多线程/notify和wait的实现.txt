@@ -1,5 +1,0 @@
-主要是通过ObjectManager类来实现的，其中有两个集合WaitSet和EntityList（或CXQ）
-
-竞争锁的线程会放到EntityList中，通过CAS的方式，来竞争锁。
-
-竞争锁成功以后，出现wait时，会放到waitSet集合中。当正在执行的线程调用notify的时候，会让waitSet中的对象放到EntityList中，去对锁进行竞争。
